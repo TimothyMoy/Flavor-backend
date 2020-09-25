@@ -10,3 +10,6 @@ mongoose.connect(connectionString, {
   .then(() => console.log('MongoDB connected successfully'))
   .catch((err) => console.log(`MongoDB connection error: ${err}`))
 
+module.exports = {
+  Recipe: require('./recipes'),
+}
