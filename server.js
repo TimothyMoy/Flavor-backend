@@ -1,7 +1,9 @@
 const express = require('express');
+const routes = require('./routes');
+
 const app = express();
 
-
+// middleware - API routes
 app.get('/', (req, res) => {
   res.send('Hello');
 });
