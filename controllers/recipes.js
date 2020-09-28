@@ -4,10 +4,18 @@ const index = (req, res) => {
   db.Recipe.find({}, (err, foundRecipes) => {
     if (err) console.log('Error in recipes#index', err);
 
-    res.json({foundRecipes});
+    res.status(200).json({foundRecipes});
+  });
+};
+
+const show = (req, res) => {
+  db.Recipe.findById(req.params.id, (err, foundRecipes) => {
+    if (err) console.log('Error in recipe#show: ', err);
+    res.status(200).send(foundRecipes);
   });
 };
 
 module.exports = {
   index,
+  show,
 };
