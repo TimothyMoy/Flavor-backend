@@ -2,8 +2,10 @@ const express = require('express');
 const routes = require('./routes');
 
 const app = express();
+const cors = require('cors')
 
 // middleware - API routes
+app.use(cors())
 app.get('/', (req, res) => {
   res.send('Hello');
 });
