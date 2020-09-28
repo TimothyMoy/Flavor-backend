@@ -4,11 +4,16 @@ const routes = require('./routes');
 const app = express();
 const cors = require('cors')
 
-// middleware - API routes
+// CORS - cross origin resource sharing
 app.use(cors())
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
+
+// middleware - JSON parsing
+app.use(express.urlencoded({extended: false}));
+app.use(express.json());
+
+// middleware - API routes
+// recipes routes
+app.use('/api/v1/recipes', routes.recipes);
 
 // Server Listener
 app.listen(4000, ()=> {

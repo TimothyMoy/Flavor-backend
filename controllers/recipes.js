@@ -15,7 +15,16 @@ const show = (req, res) => {
   });
 };
 
+const create = (req, res) => {
+  db.Recipe.create(req.body, (err,savedRecipe) => {
+    if (err) console.log('Error in recipes#create', err);
+
+    res.status(200).json(savedRecipe);
+  });
+};
+
 module.exports = {
   index,
   show,
+  create,
 };
