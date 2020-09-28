@@ -23,8 +23,21 @@ const create = (req, res) => {
   });
 };
 
+const update = (req, res) => {
+  db.Recipe.findByIdAndUpdate(req.params.id, req.body, {new: true }, (err, updatedRecipe) => {
+    if (err) console.log('Error in recipes#update', err);
+
+    if(!updatedRecipe) {
+      res.status(400).json({message: `Could not find Recipe with id ${req.params.id}`});
+    }
+
+    res.json(updatedRecipe);
+  });
+};
+
 module.exports = {
   index,
   show,
   create,
+  update,
 };
