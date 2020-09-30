@@ -1,11 +1,17 @@
 const express = require('express');
-const routes = require('./routes');
-
-const app = express();
 const cors = require('cors')
+require('dotenv').config();
+
+const routes = require('./routes');
+const PORT = process.env.PORT;
+const app = express();
 
 // CORS - cross origin resource sharing
-app.use(cors())
+app.use(cors({
+  origin: [`http://localhost:3000`],
+  methods: "GET,POST,PUT,DELETE",
+  optionsSuccessStatus: 200
+}));
 
 // middleware - JSON parsing
 app.use(express.urlencoded({extended: false}));
@@ -16,7 +22,7 @@ app.use(express.json());
 app.use('/api/v1/recipes', routes.recipes);
 
 // Server Listener
-app.listen(4000, ()=> {
-  console.log('this is on port 4000')
-})
+app.listen(PORT, () => 
+  console.log(`this is on port ${PORT}`)
+);
 
