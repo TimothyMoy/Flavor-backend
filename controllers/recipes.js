@@ -4,7 +4,7 @@ const index = (req, res) => {
   db.Recipe.find({}, (err, foundRecipes) => {
     if (err) console.log('Error in recipes#index', err);
 
-    res.status(200).json({foundRecipes});
+    res.status(200).json(foundRecipes);
   });
 };
 
